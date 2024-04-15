@@ -1,0 +1,91 @@
+Create Table pack_grades(
+grade_id Integer primary key ,
+grade_name Varchar(50),
+min_price Integer,
+max_price Integer
+);
+
+Create Table sectors (
+  sector_id Integer Primary key,
+  sector_name Char(50)
+  
+  );
+  
+Create Table packages (
+pack_id Integer Primary key,
+speed Integer ,
+strt_date DATE,
+monthly_payment Integer,
+sector_id Integer,
+Foreign key (sector_id) references sectors(sector_id)
+);
+
+Create Table customers (
+Customer_Id Integer Primary key,
+First_Name Char(50),
+Last_Name Char(50),
+Birth_Date DATE,
+Join_Date DATE,
+City Char(50),
+State Char(50),
+Street Char(50),
+main_phone_num Integer,
+secondary_phone_num Integer,
+fax Integer,
+monthly_discount Integer,
+pack_id Integer,
+Foreign key (pack_id) references packages(pack_id)
+
+);
+
+
+Insert Into pack_grades(grade_id,grade_name,min_price,max_price)
+values (1,'low',40,100),
+(2,'high',30,200),
+(3,'mid',20,500),
+
+Insert Into sector(sector_id,sector_name)
+values(1,'Business'),
+(2,'Finance')
+
+Insert Into customers(Customer_Id,First_Name,Last_Name,Birth_Date,Join_Date,City,State,Street,main_phone_num,secondary_phone_num,fax,monthly_discount,pack_id)
+values()
+
+Insert Into packages(pack_id,speed ,strt_date, monthly_payment, sector_id)
+values()
+
+
+Select * from customer
+
+false
+
+
+  
+Select Customer_Id , First_Name ,Last_Name,main_phone_num,secondary_phone_num,pack_id from customers
+
+Select First_Name ,Last_Name,Join_Date,monthly_discount, (monthly_discount+(monthly_discount*.20)) as addDiscount, (monthly_discount-(monthly_discount*.20)) as subDiscount from customers
+
+
+Select pack_id ,speed , monthly_payment ,strt_date,monthly_payment *12 as yearlyPayment from packages
+
+Select First_Name + ' ' + Last_Name as FULL_NAME,main_phone_num  + ' , ' + secondary_phone_num as CONTACT_DETAILS from customers
+
+select Distinct city from customers
+
+select Distinct states from customers
+
+select Distinct (city + ' , ' + states) from customers
+
+Select Last_Name + ', ' + state as CUSTOMER_AND_STATE  from customers
+
+Select First_Name as FN,Last_Name as LN ,monthly_discount as DC ,city + ' ' + street as FULL_ADDRESS from customers
+
+select Distinct monthly_discount from customers
+
+select Distinct pack_id from customers
+
+select First_Name , Last_Name ,city ,state from customers where state=(select sate from customers where Customer_Id=170)
+
+
+
+
